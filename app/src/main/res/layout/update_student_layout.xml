@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9F4949"
+    tools:context=".activities.UpdateStudent">
+
+    <ImageView
+        android:id="@+id/logo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/Title4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Student"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/logo4"
+        app:layout_constraintStart_toEndOf="@+id/logo4"
+        app:layout_constraintTop_toTopOf="@+id/logo4" />
+
+    <TextView
+        android:id="@+id/student_name_title1"
+        style="@style/field_title"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo4" />
+
+    <EditText
+        android:id="@+id/student_name_value1"
+        android:hint="Please Type in Student's Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_name_title1"
+        style="@style/input_field" />
+
+    <TextView
+        android:id="@+id/gender_title1"
+        style="@style/field_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_name_value1" />
+
+    <RadioGroup
+        android:id="@+id/Gender1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_title1">
+
+        <RadioButton
+            android:id="@+id/male_radio_button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textColor="#FFFFFF"
+            app:buttonTint="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/female_radio_button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#000000"
+            android:text="Female"
+            android:textColor="#FFFFFF"
+            app:buttonTint="#FFFFFF" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/date_of_birth1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of Birth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gender1"
+        style="@style/field_title"/>
+
+    <EditText
+        android:id="@+id/dob_value1"
+        style="@style/input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Please follow this style: dd-mm-yyyy"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_of_birth1" />
+
+    <TextView
+        android:id="@+id/grade_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob_value1"
+        style="@style/field_title"/>
+
+    <Spinner
+        android:id="@+id/grade_value1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grade_title1"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save Changes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grade_value1"
+        android:onClick="updateStudent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
