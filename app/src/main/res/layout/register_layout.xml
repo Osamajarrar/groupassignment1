@@ -60,7 +60,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender_title">
+        app:layout_constraintTop_toBottomOf="@+id/gender_title"
+        android:checkedButton="@id/male_radio_button">
 
         <RadioButton
             android:id="@+id/male_radio_button"

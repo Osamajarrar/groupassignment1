@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -144,7 +145,7 @@ public class RegisterStudent extends AppCompatActivity {
 
     public void registerStudent(View view) {
         boolean flag=validate();
-        if(flag){
+        if(flag==true){
         String restUrl = "http://192.168.1.111:80/groupAssignment1/addstudent.php";
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.INTERNET)
@@ -158,7 +159,7 @@ public class RegisterStudent extends AppCompatActivity {
             SendPostRequest runner = new SendPostRequest();
             runner.execute(restUrl);
         }
-    }
+        }
     }
 
     private void populateSpinner() {
@@ -191,12 +192,15 @@ public class RegisterStudent extends AppCompatActivity {
     public boolean validate (){
 
 
-        boolean flag=true;
-        if (student_name_value.getText().equals(null) || dob_value.getText().equals(null) || (gender.getCheckedRadioButtonId() == -1)){
+        boolean flag=false;
+        if(student_name_value.getText().toString().equals("")||dob_value.getText().toString().equals("")){
+
             txt_req.setVisibility(View.VISIBLE);
             flag=false;
         }else {
+
             txt_req.setVisibility(View.GONE);
+            flag=true;
         }
 
     return flag;

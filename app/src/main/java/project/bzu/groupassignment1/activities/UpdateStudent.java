@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -39,6 +40,7 @@ public class UpdateStudent extends AppCompatActivity {
     int studentID;
     String studentName,studentGender,studentDob,studentGrade;
     Student student;
+    private TextView txt_req;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class UpdateStudent extends AppCompatActivity {
         studentDob=intent.getStringExtra("studentDOB2");
         studentGrade=intent.getStringExtra("studentGrade2");
         student=new Student(studentID,studentName,studentGender,studentDob,studentGrade);
-
+        txt_req=findViewById(R.id.required1);
         grade=findViewById(R.id.grade_value1);
         populateSpinner();
         grade.setSelection(getIndex(grade,studentGrade));
@@ -170,18 +172,21 @@ public class UpdateStudent extends AppCompatActivity {
     }
 
     public void updateStudent(View view) {
-        String restUrl = "http://192.168.1.111:80/groupAssignment1/updatestudent.php?ID="+student.getID();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
+        boolean flag=validate();
+        if(flag){
+            String restUrl = "http://192.168.1.111:80/groupAssignment1/updatestudent.php?ID="+student.getID();
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.INTERNET)
+                    != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.INTERNET},
-                    123);
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.INTERNET},
+                        123);
 
-        } else{
-            UpdateStudent.SendPostRequest runner = new UpdateStudent.SendPostRequest();
-            runner.execute(restUrl);
+            } else{
+                UpdateStudent.SendPostRequest runner = new UpdateStudent.SendPostRequest();
+                runner.execute(restUrl);
+            }
         }
     }
 
@@ -212,6 +217,22 @@ public class UpdateStudent extends AppCompatActivity {
         }
 
         return 0;
+    }
+    public boolean validate (){
+
+
+        boolean flag=false;
+        if(student_name_value.getText().toString().equals("")||dob_value.getText().toString().equals("")){
+
+            txt_req.setVisibility(View.VISIBLE);
+            flag=false;
+        }else {
+
+            txt_req.setVisibility(View.GONE);
+            flag=true;
+        }
+
+        return flag;
     }
     //public void Validate(){
 //        if(student_name_value.getText().equals(null)){
